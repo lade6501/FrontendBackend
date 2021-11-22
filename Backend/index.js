@@ -1,7 +1,10 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
-const url = "mongodb://localhost:27017/mydb";
+require("dotenv").config();
+const url = process.env.DBURL;
+
+const port = process.env.PORT || 4000;
 
 const app = express();
 
@@ -22,6 +25,6 @@ const alienRouter = require("./routes/aliens");
 
 app.use("/aliens", alienRouter);
 
-app.listen("4000", () => {
-  console.log("Server up");
+app.listen(port, () => {
+  console.log(`Server up on port ${port}`);
 });
